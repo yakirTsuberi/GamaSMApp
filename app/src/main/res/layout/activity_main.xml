@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yakirtsuberi.gamasm.MainActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_toolbar"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="@string/app_name">
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add_white_24dp"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|right|end" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="32dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="מצב מכירות"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/secondTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="נכון לחודש 03.2018"
+                android:textColor="@color/secondaryDarkColor"
+                android:textSize="21sp"
+                android:layout_marginBottom="8dp"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:layoutDirection="rtl">
+                    <ImageView
+                        android:id="@+id/imageSuccess"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/button_status"
+                        android:src="@drawable/ic_thumb_up_white_24dp"
+                        android:padding="8dp"/>
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="הצליחו"
+                        android:layout_marginStart="16dp"
+                        android:layout_toEndOf="@+id/imageSuccess"
+                        android:textSize="21sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryDarkColor"/>
+                    <TextView
+                        android:id="@+id/countSuccess"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="55"
+                        android:layout_centerVertical="true"
+                        android:textSize="21sp"
+                        android:textColor="@color/secondaryDarkColor"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:layoutDirection="rtl">
+                    <ImageView
+                        android:id="@+id/imageWarning"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/button_status"
+                        android:src="@drawable/ic_thumb_down_white_24dp"
+                        android:padding="8dp"/>
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="נכשלו"
+                        android:layout_marginStart="16dp"
+                        android:layout_toEndOf="@+id/imageWarning"
+                        android:textSize="21sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryDarkColor"/>
+                    <TextView
+                        android:id="@+id/countWarning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="55"
+                        android:layout_centerVertical="true"
+                        android:textSize="21sp"
+                        android:textColor="@color/secondaryDarkColor"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:layoutDirection="rtl">
+                    <ImageView
+                        android:id="@+id/imageFail"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/button_status"
+                        android:src="@drawable/ic_hourglass_full_black_24dp"
+                        android:padding="8dp"/>
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="בהמתנה"
+                        android:layout_marginStart="16dp"
+                        android:layout_toEndOf="@+id/imageFail"
+                        android:textSize="21sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryDarkColor"/>
+                    <TextView
+                        android:id="@+id/countFail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="55"
+                        android:layout_centerVertical="true"
+                        android:textSize="21sp"
+                        android:textColor="@color/secondaryDarkColor"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

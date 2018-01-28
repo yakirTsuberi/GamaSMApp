@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GamaSM</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="action_logout">יציאה</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+</resources>
