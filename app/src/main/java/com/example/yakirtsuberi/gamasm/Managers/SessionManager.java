@@ -71,7 +71,7 @@ public class SessionManager {
     }
 
     /**
-     * Clear session details
+     * Clear session image
      * */
     public void logoutUser(){
         // Clearing all data from Shared Preferences
