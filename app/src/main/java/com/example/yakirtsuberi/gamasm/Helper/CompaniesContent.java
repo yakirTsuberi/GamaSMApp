@@ -18,7 +18,7 @@ public class CompaniesContent {
      */
     public static final Map<String, CompanyItem> ITEM_MAP = new HashMap<>();
 
-    private static final String[] COMPANIES_KEY = {"Cellcom", "Partner", "Pelephon", "012Mobile", "HotMobile", "GolanTelecom", "RamiLevi"};
+    private static final String[] COMPANIES_KEY = {"cellcom", "partner", "pelephon", "mobile_012", "hot_mobile", "golan_telecom", "rami_levi"};
     private static final String[] COMPANIES_VALUE = {"סלקום", "פרטנר", "פלאפון", "012 מובייל", "הוט מובייל", "גולן טלקום", "רמי לוי"};
 
     static {
