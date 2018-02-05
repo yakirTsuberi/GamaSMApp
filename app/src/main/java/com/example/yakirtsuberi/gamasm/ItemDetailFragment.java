@@ -2,22 +2,17 @@ package com.example.yakirtsuberi.gamasm;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.yakirtsuberi.gamasm.Helper.CompaniesContent;
@@ -71,16 +66,17 @@ public class ItemDetailFragment extends Fragment {
 
             Activity activity = this.getActivity();
 
+            assert activity != null;
             session = new SessionManager(activity.getApplication().getApplicationContext());
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.image);
+                appBarLayout.setTitle(mItem.name);
             }
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.item_detail, container, false);
 
@@ -100,6 +96,7 @@ public class ItemDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 TracksContent.TrackItem item = (TracksContent.TrackItem) view.getTag();
+                Log.i("ITEM_CLICK", String.valueOf(item));
 
             }
         };
@@ -122,8 +119,8 @@ public class ItemDetailFragment extends Fragment {
             holder.company_price.setText(String.valueOf(mValues.get(position).price));
             holder.company_kosher.setChecked(mValues.get(position).kosher);
 
-            holder.itemView.setTag(mValues.get(position));
-            holder.itemView.setOnClickListener(mOnClickListener);
+            holder.action_add.setTag(mValues.get(position));
+            holder.action_add.setOnClickListener(mOnClickListener);
         }
 
         @Override
@@ -136,6 +133,7 @@ public class ItemDetailFragment extends Fragment {
             final TextView company_description;
             final TextView company_price;
             final CheckBox company_kosher;
+            final TextView action_add;
 
             ViewHolder(View view) {
                 super(view);
@@ -143,12 +141,13 @@ public class ItemDetailFragment extends Fragment {
                 company_description = (TextView) view.findViewById(R.id.company_description);
                 company_price = (TextView) view.findViewById(R.id.company_price);
                 company_kosher = (CheckBox) view.findViewById(R.id.company_kosher);
+                action_add = (TextView) view.findViewById(R.id.action_add);
             }
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class GetTracks extends AsyncTask<View, Void, String> { //<Params, Progress, Result>
-        ProgressBar loading_spinner;
         View rootView;
 
         @Override
@@ -173,21 +172,23 @@ public class ItemDetailFragment extends Fragment {
             super.onPostExecute(s);
             try {
                 JSONArray companies = new JSONObject(s).getJSONArray("companies");
+                Log.i("COMPANY_LIST", String.valueOf(companies));
                 RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.item_detail);
                 assert recyclerView != null;
                 TracksContent tc = new TracksContent();
-                for(int i = 0; i < companies.length(); i++){
+                for (int i = 0; i < companies.length(); i++) {
                     try {
                         tc.addItem(new TracksContent.TrackItem(((JSONObject) companies.get(i))));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-                Log.i("COMPANIES_TEACKS", String.valueOf(tc.ITEMS));
+                Log.i("COMPANIES_TRACKS", String.valueOf(tc.ITEMS));
                 recyclerView.setAdapter(new ItemDetailFragment.SimpleItemRecyclerViewAdapter(tc.ITEMS));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
 
         }
 

@@ -21,7 +21,9 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+            app:toolbarId="@+id/toolbar"
+            app:collapsedTitleGravity="left"
+            app:expandedTitleGravity="bottom|left">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/detail_toolbar"
@@ -38,7 +40,7 @@
         android:id="@+id/item_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="16dp"
+        android:paddingTop="32dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton
@@ -49,6 +51,26 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/item_detail_container"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
+        app:srcCompat="@drawable/ic_shopping_cart_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/counter"
+        app:layout_anchor="@id/fab"
+        app:layout_anchorGravity="left|top"
+        android:background="@drawable/button_counter"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:padding="16dp"
+        android:elevation="6dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/counter" />
+
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="6"
+        android:elevation="6dp"
+        android:textColor="@color/secondaryDarkColor"
+        app:layout_anchor="@id/counter"
+        app:layout_anchorGravity="center"/>
 
 </android.support.design.widget.CoordinatorLayout>
