@@ -1,17 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/company_id"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/company_name"/>
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="16dp">
 
 
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/company_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="55" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical"
+                android:id="@+id/relative">
+
+                <TextView
+                    android:id="@+id/company_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ללא הגבלה"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/company_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="כשר ללא הגבלה במחיר זול מאוד" />
+
+                <CheckBox
+                    android:id="@+id/company_kosher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="כשר" />
+
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/action_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="הוסף קו"
+                android:textStyle="bold"
+                android:textColor="@color/primaryDarkColor"
+                android:layout_below="@+id/relative"/>
+        </RelativeLayout>
+
+
+
+</android.support.v7.widget.CardView>
+

@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -116,8 +117,10 @@ public class ItemDetailFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ItemDetailFragment.SimpleItemRecyclerViewAdapter.ViewHolder holder, int position) {
-            holder.mIdView.setText(String.valueOf(mValues.get(position).id));
-            holder.mCompanyView.setText(mValues.get(position).company);
+            holder.company_name.setText(String.valueOf(mValues.get(position).track_name));
+            holder.company_description.setText(mValues.get(position).description);
+            holder.company_price.setText(String.valueOf(mValues.get(position).price));
+            holder.company_kosher.setChecked(mValues.get(position).kosher);
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -129,18 +132,21 @@ public class ItemDetailFragment extends Fragment {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            final TextView mIdView;
-            final TextView mCompanyView;
+            final TextView company_name;
+            final TextView company_description;
+            final TextView company_price;
+            final CheckBox company_kosher;
 
             ViewHolder(View view) {
                 super(view);
-                mIdView = (TextView) view.findViewById(R.id.company_id);
-                mCompanyView = (TextView) view.findViewById(R.id.company_name);
+                company_name = (TextView) view.findViewById(R.id.company_name);
+                company_description = (TextView) view.findViewById(R.id.company_description);
+                company_price = (TextView) view.findViewById(R.id.company_price);
+                company_kosher = (CheckBox) view.findViewById(R.id.company_kosher);
             }
         }
     }
 
-    @SuppressLint("StaticFieldLeak")
     private class GetTracks extends AsyncTask<View, Void, String> { //<Params, Progress, Result>
         ProgressBar loading_spinner;
         View rootView;
@@ -165,7 +171,6 @@ public class ItemDetailFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Log.i("RESULT", s);
             try {
                 JSONArray companies = new JSONObject(s).getJSONArray("companies");
                 RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.item_detail);

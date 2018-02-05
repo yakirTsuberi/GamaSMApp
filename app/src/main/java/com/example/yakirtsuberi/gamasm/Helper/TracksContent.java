@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TracksContent {
 
-    public static final List<TrackItem> ITEMS = new ArrayList<>();
+    public List<TrackItem> ITEMS = new ArrayList<>();
 
     public void addItem(TrackItem trackItem) {
         ITEMS.add(trackItem);
