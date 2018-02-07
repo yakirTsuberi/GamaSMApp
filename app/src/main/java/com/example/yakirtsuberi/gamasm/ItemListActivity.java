@@ -2,6 +2,8 @@ package com.example.yakirtsuberi.gamasm;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -48,14 +51,7 @@ public class ItemListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -76,6 +72,35 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.sales, menu);
+
+        MenuItem itemCart = menu.findItem(R.id.sale_icon);
+        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        setBadgeCount(this, icon, String.valueOf(ItemDetailFragment.getTracksLength()));
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
+
+        BagdeDrawable badge;
+
+        // Reuse drawable if possible
+        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_badge);
+        if (reuse != null && reuse instanceof BagdeDrawable) {
+            badge = (BagdeDrawable) reuse;
+        } else {
+//            BadgeDrawable
+            badge = new BagdeDrawable(context);
+        }
+
+        badge.setCount(count);
+        icon.mutate();
+        icon.setDrawableByLayerId(R.id.ic_badge, badge);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
@@ -88,6 +113,9 @@ public class ItemListActivity extends AppCompatActivity {
             //
             navigateUpFromSameTask(this);
             return true;
+        }
+        if (id == R.id.sale_icon){
+            Log.i("HI", "HI");
         }
         return super.onOptionsItemSelected(item);
     }

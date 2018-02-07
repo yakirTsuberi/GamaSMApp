@@ -5,10 +5,19 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
 
 /**
  * An activity representing a single Item detail screen. This
@@ -39,6 +48,16 @@ public class ItemDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        int length_sales = ItemDetailFragment.getTracksLength();
+        if (length_sales > 0){
+            ImageButton counter = findViewById(R.id.counter);
+            TextView counterTxt = findViewById(R.id.counterTxt);
+
+            counter.setVisibility(View.VISIBLE);
+            Log.i("COUNTER", String.valueOf(length_sales));
+            counterTxt.setText(String.valueOf(length_sales));
+        }
+
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -60,6 +79,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.item_detail_container, fragment)
                     .commit();
+
         }
     }
 

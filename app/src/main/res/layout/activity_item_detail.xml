@@ -54,6 +54,7 @@
         app:srcCompat="@drawable/ic_shopping_cart_black_24dp" />
 
     <ImageButton
+        android:visibility="invisible"
         android:id="@+id/counter"
         app:layout_anchor="@id/fab"
         app:layout_anchorGravity="left|top"
@@ -66,10 +67,10 @@
         android:contentDescription="@string/counter" />
 
     <TextView android:layout_height="wrap_content"
+        android:id="@+id/counterTxt"
         android:layout_width="wrap_content"
-        android:text="6"
         android:elevation="6dp"
-        android:textColor="@color/secondaryDarkColor"
+        android:textColor="@color/primaryTextColor"
         app:layout_anchor="@id/counter"
         app:layout_anchorGravity="center"/>
 

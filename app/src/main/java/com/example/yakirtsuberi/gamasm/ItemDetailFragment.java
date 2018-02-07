@@ -2,16 +2,20 @@ package com.example.yakirtsuberi.gamasm;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -24,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static com.example.yakirtsuberi.gamasm.Managers.SessionManager.KEY_TOKEN;
@@ -39,6 +44,8 @@ public class ItemDetailFragment extends Fragment {
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
+    public static JSONObject tracks = new JSONObject();
+    public static String sales = "{tracks:{'<track_id>':[{'sim_num':'<sim_num>', 'phone_num':'<phone_num>'}]}}";
     public static final String ARG_ITEM_ID = "item_id";
     SessionManager session;
     Requests requests = new Requests();
@@ -53,6 +60,21 @@ public class ItemDetailFragment extends Fragment {
      */
     public ItemDetailFragment() {
     }
+
+    public static int getTracksLength() {
+        int length = 0;
+        Iterator<?> keys = tracks.keys();
+        while (keys.hasNext()) {
+            String key = (String) keys.next();
+            try {
+                length += ((JSONArray) tracks.get(key)).length();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return length;
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,7 +118,14 @@ public class ItemDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 TracksContent.TrackItem item = (TracksContent.TrackItem) view.getTag();
-                Log.i("ITEM_CLICK", String.valueOf(item));
+                Log.i("ITEM_CLICK", String.valueOf(item.id));
+
+                NewIctuvDialog nd = new NewIctuvDialog(getActivity(), item, tracks);
+                nd.show();
+                if (tracks != null) {
+                    Log.i("TRACKS", tracks.toString());
+                }
+
 
             }
         };
@@ -171,7 +200,8 @@ public class ItemDetailFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             try {
-                JSONArray companies = new JSONObject(s).getJSONArray("companies");
+                JSONObject jo = new JSONObject(s);
+                JSONArray companies = jo.getJSONArray("companies");
                 Log.i("COMPANY_LIST", String.valueOf(companies));
                 RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.item_detail);
                 assert recyclerView != null;

@@ -2,7 +2,7 @@
     <string name="app_name">GamaSM</string>
     <string name="action_settings">הגדרות</string>
     <string name="action_logout">יציאה</string>
-    <string name="title_item_list">Items</string>
+    <string name="title_item_list">בחר חברה</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="title_itemtest_list">Items_test</string>
     <string name="title_itemtest_detail">Item_test Detail</string>
