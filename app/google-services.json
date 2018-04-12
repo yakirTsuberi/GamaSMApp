@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "897135418424",
+    "firebase_url": "https://first-85488.firebaseio.com",
+    "project_id": "first-85488",
+    "storage_bucket": "first-85488.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897135418424:android:ffdf26ffd8953de8",
+        "android_client_info": {
+          "package_name": "com.example.yakirtsuberi.gamasm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897135418424-bh0kkt1e6048f1gk3ooe97ml4jq1ljuq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrzDLKwd_LRrbyEnFzVQn8eSM3XYq9x5A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

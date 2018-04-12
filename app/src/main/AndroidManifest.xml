@@ -4,6 +4,7 @@
     package="com.example.yakirtsuberi.gamasm">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -24,14 +25,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ItemListActivity"
             android:label="@string/title_item_list"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ClientDetails"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.yakirtsuberi.gamasm.MainActivity" />
+                android:value="com.example.yakirtsuberi.gamasm.ClientDetails" />
         </activity>
         <activity
             android:name=".ItemDetailActivity"
@@ -43,6 +45,16 @@
                 android:value="com.example.yakirtsuberi.gamasm.ItemListActivity" />
         </activity>
         <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".ClientDetails"
+            android:label="@string/new_ictuv"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.yakirtsuberi.gamasm.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>
